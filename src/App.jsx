@@ -1,5 +1,7 @@
+import Router from "./router/router"
+
 function App() {
-  return <h1 className=" text-red-500 underline">hello world</h1>
+  return <Router/>
 }
 
 export default App
