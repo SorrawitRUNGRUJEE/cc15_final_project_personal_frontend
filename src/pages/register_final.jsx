@@ -1,3 +1,6 @@
+import {toast} from "react-toastify"
+import RegisterForm from "../feature/register/registerForm"
+
 export default function RegisterFinal(){
-    return <h1> Register Final</h1>
+    return < RegisterForm />
 }

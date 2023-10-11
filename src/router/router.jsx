@@ -17,7 +17,12 @@ import PaymentAuthen from "../pages/paymentAuthen";
 const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
   { path: "/admin", element: <Admin /> },
-  { path: "/register", element: <RegisterFinal /> },
+  { path: "/register", element: (<>
+    <RegisterFinal />
+    <Footer /> 
+  </>
+    )
+  },
   {
     path: "/profile",
     element: (
