@@ -1,3 +1,6 @@
 import axios from "axios"
-require('dotenv').config()
-axios.defaults.baseURL = process.env.BACK_END_URL
+import { BACKEND_URL } from "./env"
+axios.defaults.baseURL = BACKEND_URL
+
+
+export default axios
