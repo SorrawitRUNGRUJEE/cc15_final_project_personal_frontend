@@ -1,4 +1,4 @@
 export default function ErrorMessage({hasError}){
 
-    return <div>{hasError}</div>
+    return <div className=" text-red-500 text-xs">{hasError}</div>
 }

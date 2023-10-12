@@ -112,7 +112,7 @@ export default function RegisterForm() {
       {registerInput.map((el) => {
         return (
           <>
-            <div className=" flex flex-col">
+            <div className=" flex flex-col gap-2">
               <label>{el.label}</label>
               <RegisterInput
                 key={el.id}

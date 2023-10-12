@@ -15,7 +15,12 @@ import Basket from "../pages/basket";
 import ConfirmPayment from "../pages/confirm_payment";
 import PaymentAuthen from "../pages/paymentAuthen";
 const router = createBrowserRouter([
-  { path: "/login", element: <Login /> },
+  { path: "/login", element: (
+  <>
+  <Login />
+  <Footer />
+  </>
+  ) },
   { path: "/admin", element: <Admin /> },
   { path: "/register", element: (<>
     <RegisterFinal />

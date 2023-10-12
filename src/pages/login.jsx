@@ -1,3 +1,10 @@
+import LoginContainer from "../feature/login/login_container";
+
+
 export default function Login(){
-    return <h1>Log in</h1>
+    return <LoginContainer /> 
+        
+        
+    
+        
 }
