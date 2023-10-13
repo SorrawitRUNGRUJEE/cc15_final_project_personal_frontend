@@ -35,12 +35,12 @@ export default function LoginForm() {
     setInput({...input,[e.target.name]:e.target.value})
 
   }
-  const hdl_submit = (e) => {
+  const hdl_submit = async (e) => {
     e.preventDefault();
     const result = validateLogin(input);
     if (result) return setError(result);
     setError({})
-    login(input)
+     await login(input).then(navigate('/profile'))
   
   };
 

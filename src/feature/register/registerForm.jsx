@@ -4,6 +4,7 @@ import RegisterInput from "./register_input";
 import { useAuth } from "../../hook/use_auth";
 import Joi from "joi";
 import ErrorMessage from "./error_message";
+import { useNavigate } from "react-router-dom";
 
 const registerSchema = Joi.object({
   email: Joi.string()
@@ -48,16 +49,27 @@ export default function RegisterForm() {
     region: "",
   });
 
+  const navigate = useNavigate();
+
   const hdl_change = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const hdl_submit = (e) => {
+  const hdl_submit = async (e) => {
     e.preventDefault();
     const result = validateRegister(input);
     if (result) return setError(result);
-    delete input.confirmEmail
-    register(input)
+    const oldInput = {...input}
+    delete input.confirmEmail;
+    await register(input)
+      .then((res) => {
+        navigate("/login");
+      })
+      .catch((error) => {
+       
+        setError({});
+        setInput({...input,...oldInput});
+      });
   };
 
   const registerInput = [

@@ -10,7 +10,8 @@ export default function AuthContextProvider({children}){
         await axios.post('/auth/register',data).then(res=>{
             alert(res.data.msg)
         }).catch(error=>{
-            alert(error.response.data.msg)
+            alert(error.response.data.msg);
+            throw error
         })
 
     }
@@ -21,6 +22,8 @@ export default function AuthContextProvider({children}){
          
         }).catch(error=>{
             alert(error.response.data.msg)
+            
+            throw error
         })
     }
 
