@@ -14,6 +14,9 @@ import RegisterFinal from "../pages/register_final";
 import Basket from "../pages/basket";
 import ConfirmPayment from "../pages/confirm_payment";
 import PaymentAuthen from "../pages/paymentAuthen";
+import Unauthorized from "../pages/unauthorized";
+import NotAdminRedirect from "../feature/redirect/not_admin_redirect";
+import NotLoginRedirect from "../feature/redirect/not_login_redirect";
 const router = createBrowserRouter([
   { path: "/login", element: (
   <>
@@ -21,7 +24,13 @@ const router = createBrowserRouter([
   <Footer />
   </>
   ) },
-  { path: "/admin", element: <Admin /> },
+  { path: "/admin", element: (
+    <>
+    <NotAdminRedirect>
+    <Admin />
+    </NotAdminRedirect>
+    </>
+  ) },
   { path: "/register", element: (<>
     <RegisterFinal />
     <Footer /> 
@@ -31,11 +40,11 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: (
-      <>
+      <NotLoginRedirect>
         <ProfileHeader />
         <Outlet />
         <Footer />
-      </>
+      </NotLoginRedirect>
     ),
     children: [
       { path: "/profile", element: <Profile /> },
@@ -54,8 +63,8 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: "/", element: <StoreFront /> },
-      { path: "/product/:product", element: <ProductDetail /> },
-      { path: "/explore/:category", element: <Explore /> },
+      { path: "/product", element: <ProductDetail /> },
+      { path: "/explore", element: <Explore /> },
     ],
   },
   {
@@ -72,6 +81,7 @@ const router = createBrowserRouter([
       { path: "/transaction/authen", element: <PaymentAuthen /> },
     ],
   },
+  {path:"/unauth",element:< Unauthorized />},
 ]);
 
 export default function Router() {

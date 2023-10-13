@@ -40,7 +40,11 @@ export default function LoginForm() {
     const result = validateLogin(input);
     if (result) return setError(result);
     setError({})
-     await login(input).then(navigate('/profile'))
+     await login(input).then(res =>{
+      navigate('/profile')
+    }).catch(error=>{
+      setError({})
+    })
   
   };
 
