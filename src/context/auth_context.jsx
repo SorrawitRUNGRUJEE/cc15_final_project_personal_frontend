@@ -1,6 +1,6 @@
 import {createContext} from "react"
 import axios from "../config/axios"
-import {addAccessToken,getAccessToken} from "../utils/localStorage"
+import {addAccessToken,getAccessToken,removeAccessToken} from "../utils/localStorage"
 import { useState,useEffect } from "react"
 
 
@@ -11,23 +11,27 @@ const [user,setUser] = useState(null)
 const [loading,setLoading] = useState(true)
 
 useEffect(()=>{
+    
     const token = getAccessToken()
     if(token){
     axios.get('/auth/user').then(
         res =>{
-            
             setUser(res.data.user)
         }
     ).finally(()=>{
-        setLoading(false)
+        setTimeout(()=>{
+            setLoading(false)
+        },1000)
+        
     })
         
 
     }
+    else if (!token){
+        setUser({isAdmin:false})
+        setLoading(false)
+    }
     else setLoading(false)
-
-
-
 },[])
    
     const register = async (data) =>{
@@ -52,8 +56,14 @@ useEffect(()=>{
             
         })
     }
+    const logOut = () =>{
+        console.log('log out')
+        removeAccessToken()
+        setUser(null)
 
-    return <AuthContext.Provider value={{register,login,user,loading}}>
+    }
+
+    return <AuthContext.Provider value={{register,login,user,loading,logOut}}>
         {children}
     </AuthContext.Provider>
 }

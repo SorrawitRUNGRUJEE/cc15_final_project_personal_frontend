@@ -9,7 +9,6 @@ import Explore from "../pages/explore";
 import Wishlist from "../pages/wishlist";
 import Profile from "../pages/profile";
 import PurchaseHistory from "../pages/purchase_history";
-import ProfileHeader from "../layout/profileHeader";
 import RegisterFinal from "../pages/register_final";
 import Basket from "../pages/basket";
 import ConfirmPayment from "../pages/confirm_payment";
@@ -17,31 +16,48 @@ import PaymentAuthen from "../pages/paymentAuthen";
 import Unauthorized from "../pages/unauthorized";
 import NotAdminRedirect from "../feature/redirect/not_admin_redirect";
 import NotLoginRedirect from "../feature/redirect/not_login_redirect";
+import RedirectIfLogin from "../feature/redirect/redirect_if_login";
+import Logout from "../pages/log_out";
+import AdminContextProvider from "../context/admin_context";
 const router = createBrowserRouter([
-  { path: "/login", element: (
-  <>
-  <Login />
-  <Footer />
-  </>
-  ) },
-  { path: "/admin", element: (
-    <>
-    <NotAdminRedirect>
-    <Admin />
-    </NotAdminRedirect>
-    </>
-  ) },
-  { path: "/register", element: (<>
-    <RegisterFinal />
-    <Footer /> 
-  </>
-    )
+  {
+    path: "/login",
+    element: (
+      <>
+        <RedirectIfLogin>
+          <Login />
+          <Footer />
+        </RedirectIfLogin>
+      </>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <>
+        <NotAdminRedirect>
+          <AdminContextProvider>
+            <Header />
+            <Admin />
+          </AdminContextProvider>
+        </NotAdminRedirect>
+      </>
+    ),
+  },
+  {
+    path: "/register",
+    element: (
+      <>
+        <RegisterFinal />
+        <Footer />
+      </>
+    ),
   },
   {
     path: "/profile",
     element: (
       <NotLoginRedirect>
-        <ProfileHeader />
+        <Header />
         <Outlet />
         <Footer />
       </NotLoginRedirect>
@@ -71,8 +87,10 @@ const router = createBrowserRouter([
     path: "/transaction",
     element: (
       <>
-        <Outlet />
-        <Footer />
+        <NotLoginRedirect>
+          <Outlet />
+          <Footer />
+        </NotLoginRedirect>
       </>
     ),
     children: [
@@ -81,7 +99,15 @@ const router = createBrowserRouter([
       { path: "/transaction/authen", element: <PaymentAuthen /> },
     ],
   },
-  {path:"/unauth",element:< Unauthorized />},
+  { path: "/unauth", element: <Unauthorized /> },
+  {
+    path: "/logout",
+    element: (
+      <RedirectIfLogin>
+        <Logout />
+      </RedirectIfLogin>
+    ),
+  },
 ]);
 
 export default function Router() {

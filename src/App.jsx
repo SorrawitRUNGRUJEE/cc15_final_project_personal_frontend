@@ -4,17 +4,8 @@ import Router from "./router/router"
 import {ToastContainer} from "react-toastify"
 function App() {
   const {loading} = useAuth()
-  if(loading){
-    console.log("loading")
-    return <Loading />
-  }
-  
-  return( 
-<>
-    <Router/>
-    <ToastContainer />
-</>
-  ) 
+  if(loading) return <Loading />
+  return<Router/>
 }
 
 export default App
