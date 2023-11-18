@@ -2,7 +2,7 @@ import Input from "../../component/input"
 import {useAdmin} from "../../hook/use_admin"
 export default function AdminSidebarSubcontentAddAdmin(){
 
-    const {hdl_input,add_admin,input} = useAdmin()
+    const {hdl_input,add_admin,input,setInput,setIsOpen} = useAdmin()
     const inp = [
         {id:1, label:"Enter e-mail",name:"email" , placeholder:"type here", type:"text",},
         {id: 2, label:"Enter username",name:"username" , placeholder:"type here", type:"text",},
@@ -26,8 +26,18 @@ export default function AdminSidebarSubcontentAddAdmin(){
             <label >{el.label}</label>
         < Input  name={el.name} className={""} type={el.type} placeholder={el.placeholder} onChange={hdl_input} />
         </div>))
-    })}
+    })}  <div className=" flex gap-2 hover:cursor-pointer hover:underline">
     <button>submit</button>
+    <button
+            type="button"
+            onClick={() => {
+              setIsOpen("");
+              setInput({});
+            }}
+          >
+            cancel
+          </button>
+    </div>
     </form>
     )
         

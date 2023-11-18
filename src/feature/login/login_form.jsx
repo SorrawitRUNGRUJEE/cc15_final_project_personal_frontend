@@ -52,11 +52,14 @@ export default function LoginForm() {
     {id:"1",label:"username",type:"text",placeholder:"enter username",name:"username",onChange:hdl_change,hasError:error.username}, 
     {id:"2",label:"password",type:"password",placeholder:"enter password",name:"password",onChange:hdl_change,hasError:error.password}];
   return (
-    <form onSubmit={hdl_submit}>
+   <>
+   <div className=" flex flex-col gap-4">
+
+   <form onSubmit={hdl_submit}>
         {loginInput.map(el=>{
-            return (<>
-                <div className=" flex flex-col gap-2">
-                  <label>{el.label}</label>
+          return (<>
+                <div className=" flex flex-col gap-4">
+                  <label >{el.label}</label>
                   <LoginInput
                 key={el.id}
                 type={el.type}
@@ -64,7 +67,7 @@ export default function LoginForm() {
                 name={el.name}
                 onChange={el.onChange}
                 hasError={el.hasError}
-              />
+                />
                 </div>
                 <div>
 
@@ -74,5 +77,12 @@ export default function LoginForm() {
         })}
         <button>submit</button>      
     </form>
+
+    <label
+      className=" hover:underline text-gray-600 hover:text-gray-800 hover:cursor-pointer"
+      onClick={()=>navigate('/register')}
+    > not a member yet ? subscribe now!</label>
+        </div>
+                </>
   );
 }

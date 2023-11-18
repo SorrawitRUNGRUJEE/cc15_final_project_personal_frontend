@@ -3,7 +3,7 @@ import { useAdmin } from "../../hook/use_admin"
 export default function AdminSidebarSubcontentDeleteAdmin(){
 
 
-    const {allAdmin,hdl_input,delete_admin,input} = useAdmin()
+    const {allAdmin,hdl_input,delete_admin,input,setInput,setIsOpen} = useAdmin()
     const inp = [
         {id:1, label:"Enter id",name:"id" , placeholder:"type here", type:"text",},
         {id: 2, label:"Enter username",name:"username" , placeholder:"type here", type:"text",},
@@ -46,7 +46,18 @@ export default function AdminSidebarSubcontentDeleteAdmin(){
         < Input  name={el.name} className={""} type={el.type} placeholder={el.placeholder} onChange={hdl_input}/>
         </div>))
     })}
+      <div className=" flex gap-2 hover:cursor-pointer hover:underline">
     <button>submit</button>
+    <button
+            type="button"
+            onClick={() => {
+              setIsOpen("");
+              setInput({});
+            }}
+          >
+            cancel
+          </button>
+    </div>
     </form>
     )
 }

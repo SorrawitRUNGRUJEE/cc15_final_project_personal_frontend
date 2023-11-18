@@ -12,8 +12,11 @@ import AdminSidebarSubcontentDeleteProductCategory from "./admin_sidebar_subcone
 import AdminSidebarSubcontentDeleteCategory from "./admin_sidebar_subconetnt_delete_category"
 import AdminSidebarSubcontentUpdateCategory from "./admin_sidebar_subconetnt_update_category"
 import AdminSidebarSubcontentAddCategory from "./admin_sidebar_subconetnt_add_category"
+import {useAuth} from "../../hook/use_auth"
 export default function AdminSidebar() {
-  const [isShow, setIsShow] = useState("");
+  const {user} = useAuth()
+  
+  const [isShow, setIsShow] = useState("")
   const adminContent = [
     { title: "add admin",
     modal: <AdminSideBarSubContentAddAdmin />
@@ -22,7 +25,7 @@ export default function AdminSidebar() {
       title: "delete admin",
       modal:< AdminSidebarSubcontentDeleteAdmin />
     },
-  ];
+  ]
   const productContent = [
     { title: "add product",modal: <AdminSidebarSubContentAddProduct /> },
     {
@@ -43,7 +46,7 @@ export default function AdminSidebar() {
     {
       title: "delete product's category",modal: < AdminSidebarSubcontentDeleteProductCategory />
     }
-  ];
+  ]
   const categoryContent = [
     { title: "add category",modal: < AdminSidebarSubcontentAddCategory/> },
     {
@@ -54,15 +57,15 @@ export default function AdminSidebar() {
     },
   ]
   return (
-    <div className=" flex flex-col gap-4 p-4 bg-blue-200">
-      <AdminSidebarContent
+    <div className=" flex flex-col gap-4 p-4 bg-slate-400 ">
+     {user.isSuperAdmin && <AdminSidebarContent
       id={1}
         title={"admin"}
         isShow={isShow}
         content={adminContent}
         open={()=>setIsShow("admin")}
         close={()=>setIsShow("")}
-      />
+      />}
       <AdminSidebarContent
       id={2}
         title={"product"}

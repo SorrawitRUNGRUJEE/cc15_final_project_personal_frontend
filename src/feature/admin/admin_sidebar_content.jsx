@@ -11,13 +11,13 @@ export default function AdminSidebarContent({ title, content ,isShow,open,close}
             onClick={title == isShow? close:open }
           src={triangle}
           alt="triangle"
-          className={` hover:cursor-pointer max-h-4 max-w-2 ${isShow == title? "rotate-180" : "rotate-90 transiti"}`}
+          className={` hover:cursor-pointer max-h-4 max-w-2  ${isShow == title? "rotate-180" : "rotate-90 transiti"}`}
           />
-          <h1 onClick={title == isShow? close:open} className=" hover:cursor-pointer">{title}</h1>
+          <h1 onClick={title == isShow? close:open} className=" hover:cursor-pointer hover:underline">{title}</h1>
       </div>
-      <div className={isShow == title? " text-red-400" : "hidden transition-opacity"}>
+      <div className={isShow == title? "" : "hidden transition-opacity"}>
        {content.map((el,id)=>{
-        return < AdminSideBarSubContent id={id} title = {el.title} modal={el.modal}/>
+        return < AdminSideBarSubContent id={id} title = {el.title} modal={el.modal} />
             
       
 

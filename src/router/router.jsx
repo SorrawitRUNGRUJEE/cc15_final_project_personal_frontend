@@ -19,6 +19,7 @@ import NotLoginRedirect from "../feature/redirect/not_login_redirect";
 import RedirectIfLogin from "../feature/redirect/redirect_if_login";
 import Logout from "../pages/log_out";
 import AdminContextProvider from "../context/admin_context";
+import StoreContextProvider from "../context/storefront_context";
 const router = createBrowserRouter([
   {
     path: "/login",
@@ -68,19 +69,22 @@ const router = createBrowserRouter([
       { path: "/profile/purchase", element: <PurchaseHistory /> },
     ],
   },
+  
   {
     path: "/",
     element: (
       <>
+      <StoreContextProvider>
         <Header />
         <Outlet />
         <Footer />
+      </StoreContextProvider>
       </>
     ),
     children: [
       { path: "/", element: <StoreFront /> },
-      { path: "/product", element: <ProductDetail /> },
-      { path: "/explore", element: <Explore /> },
+      { path: "/product/:productId", element: <ProductDetail /> },
+      { path: "/explore/:categoryId", element: <Explore /> },
     ],
   },
   {

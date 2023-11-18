@@ -1,7 +1,7 @@
 import Input from "../../component/input"
 import { useAdmin } from "../../hook/use_admin"
 export default function AdminSidebarSubcontentAddProduct(){
-    const {hdl_input,add_product,input} = useAdmin()
+    const {hdl_input,add_product,input,setInput,setIsOpen} = useAdmin()
     const inp = [
         {id:1, label:"Enter the game's title",name:"title" , placeholder:"type here", type:"text",},
         {id: 2, label:"Enter the game's full description",name:"fullDesc" , placeholder:"type here", type:"text",},
@@ -26,7 +26,18 @@ export default function AdminSidebarSubcontentAddProduct(){
         < Input  name={el.name} className={""} type={el.type} placeholder={el.placeholder} onChange={hdl_input} />
         </div>))
     })}
+  <div className=" flex gap-2 hover:cursor-pointer hover:underline mx-auto">
     <button>submit</button>
+    <button
+            type="button"
+            onClick={() => {
+              setIsOpen("");
+              setInput({});
+            }}
+          >
+            cancel
+          </button>
+    </div>
     </form>
     )
 }

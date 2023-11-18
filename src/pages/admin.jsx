@@ -6,10 +6,13 @@ export default function Admin() {
 
   return (
     <div className=" flex">
+      <div className=" bg-red-200 ">
+
         < AdminSidebar />
+      </div>
      
 
-      <div className=" mx-auto bg-red-300">
+      <div className=" mx-auto ">
         <div>show data 1</div>
         <div>show data 2</div>
         <div>show data 3</div>

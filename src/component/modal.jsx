@@ -1,4 +1,4 @@
-export default function Modal({ title, children, isOpen,onClose,maxwidth=27 }) {
+export default function Modal({ title, children, isOpen,onClose,maxwidth=100 }) {
   return (
     <>
       {title == isOpen && (
@@ -10,8 +10,8 @@ export default function Modal({ title, children, isOpen,onClose,maxwidth=27 }) {
           <div className=" fixed inset-0 z-30">
             <div className=" flex justify-center items-center min-h-full  p-4 ">
               <div
-                className=" bg-white rounded-lg w-full shadow-inner-2xl border "
-                style={{ maxWidth: `${maxwidth}rem` }}
+                className=" bg-white rounded-lg w-full shadow-inner-2xl border max-h-[600px] overflow-y-scroll min-w-fit "
+                style={{ maxWidth: `${maxwidth}rem`, }}
               >
                 <div className="flex justify-between p-4 text-xl border-b">
                   <div className=" invisible">x</div>

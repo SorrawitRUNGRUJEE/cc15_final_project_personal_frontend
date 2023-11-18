@@ -7,23 +7,29 @@ export default function Header() {
   return (
     <>
       {!getAccessToken() ? (
-        <div className="flex justify-between items-center px-8 py-2 bg-green-200">
-          <div className=" bg-red-200">default</div>
+        <div className="flex justify-between items-center px-8 py-2 bg-gray-200">
+          <div className=" ">default</div>
           <div className="flex gap-4">
             <div
-              className=" p-2 bg-blue-300 hover:cursor-pointer"
+              className=" p-2  hover:cursor-pointer"
               onClick={() => navigate("/")}
             >
               Store
             </div>
             <div
-              className=" p-2 bg-blue-300 hover:cursor-pointer"
+              className=" p-2  hover:cursor-pointer"
               onClick={() => navigate("/explore")}
             >
               explore
             </div>
             <div
-              className=" p-2 bg-blue-300  hover:cursor-pointer"
+              className=" p-2   hover:cursor-pointer"
+              onClick={() => navigate("/register")}
+            >
+              register
+            </div>
+            <div
+              className=" p-2   hover:cursor-pointer"
               onClick={() => navigate("/login")}
             >
               Log in
@@ -32,18 +38,18 @@ export default function Header() {
         </div>
        
       ) : user.isAdmin ? (
-        <div className="flex justify-between items-center px-8 py-2 bg-green-200">
+        <div className="flex justify-between items-center px-8 py-2 bg-gray-400">
           <div>admin</div>
           <div className="flex gap-4">
         
             <div
-              className=" p-2 bg-blue-300 hover:cursor-pointer"
+              className=" p-2  hover:cursor-pointer"
               onClick={() => navigate("/admin")}
             >
               admin
             </div>
             <div
-              className=" p-2 bg-blue-300 hover:cursor-pointer"
+              className=" p-2  hover:cursor-pointer"
               onClick={() => {
                 logOut();
                 navigate("/logout");
@@ -54,7 +60,7 @@ export default function Header() {
           </div>
         </div>
       ) : (
-        <div className="flex justify-between items-center px-8 py-2 bg-green-200">
+        <div className="flex justify-between items-center px-8 py-2 bg-gray-400">
         <div>user</div>
         <div className="flex gap-4">
           <div>Store</div>
@@ -62,7 +68,7 @@ export default function Header() {
           <div>profile</div>
           <div>wishlist</div>
           <div
-            className=" p-2 bg-blue-300 hover:cursor-pointer"
+            className=" p-2 bg-gray-300 hover:cursor-pointer"
             onClick={() => {
               logOut();
               navigate("/logout");

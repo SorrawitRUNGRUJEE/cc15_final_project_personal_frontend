@@ -150,7 +150,7 @@ export default function RegisterForm() {
           <option value={"SA"}>South America</option>
         </select>
       </div>
-      <RegisterButton className={" bg-blue-400"}>register</RegisterButton>
+      <RegisterButton className="">register</RegisterButton>
     </form>
   );
 }
