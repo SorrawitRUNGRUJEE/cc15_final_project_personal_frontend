@@ -120,11 +120,11 @@ export default function RegisterForm() {
     },
   ];
   return (
-    <form className=" flex flex-col gap-4  items-center" onSubmit={hdl_submit}>
+    <form className=" flex flex-col gap-2 items-center" onSubmit={hdl_submit}>
       {registerInput.map((el) => {
         return (
           <>
-            <div className=" flex flex-col gap-2">
+            <div className=" flex flex-col g">
               <label className="text-sky-600 text-[20px] font-semibold">{el.label}</label>
               <RegisterInput
                 key={el.id}
@@ -141,7 +141,7 @@ export default function RegisterForm() {
       })}
       <div className=" flex items-center gap-4">
         <label className="text-sky-600 text-[20px] pb-4 font-semibold" htmlFor="region">Choose your region:</label>
-        <select className="mb-4 px-4 rounded-lg py-4 w-[400px] bg-slate-800 shadow-sm text-white border-none outline-none" name="region" id="region" onChange={hdl_change}>
+        <select className="mb-4 px-4 rounded-lg py-2 w-[200px] bg-slate-800 shadow-sm text-white border-none outline-none" name="region" id="region" onChange={hdl_change}>
           <option className="">Select one</option>
           <option value={"AO"}>Asia-Oceania</option>
           <option value={"EU"}>Europe</option>

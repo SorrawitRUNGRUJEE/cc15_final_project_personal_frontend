@@ -69,22 +69,22 @@ const router = createBrowserRouter([
       { path: "/profile/purchase", element: <PurchaseHistory /> },
     ],
   },
-  
+
   {
     path: "/",
     element: (
       <>
-      <StoreContextProvider>
-        <Header />
-        <Outlet />
-        <Footer />
-      </StoreContextProvider>
+        <StoreContextProvider>
+          <Header />
+          <Outlet />
+          <Footer />
+        </StoreContextProvider>
       </>
     ),
     children: [
       { path: "/", element: <StoreFront /> },
       { path: "/product/:productId", element: <ProductDetail /> },
-      { path: "/explore/:categoryId", element: <Explore /> },
+      { path: "/explore/", element: <Explore /> },
     ],
   },
   {

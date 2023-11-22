@@ -57,7 +57,7 @@ export default function LoginForm() {
         <form onSubmit={hdl_submit}>
           {loginInput.map(el => {
             return (<>
-              <div className=" flex flex-col gap-4">
+              <div className=" flex flex-col gap-2">
                 <label className="text-sky-600 text-[20px] font-semibold" >{el.label}</label>
                 <LoginInput
                   key={el.id}
@@ -75,12 +75,12 @@ export default function LoginForm() {
             </>)
           })}
           <div className=" h-full w-full flex flex-col items-center">
-            <button className="bg-gradient-to-r from-sky-600 to-indigo-600 text-white px-4 py-3 w-[200px] justify-center items-center mt-4 font-semibold text-[18px]">Submit</button>
+            <button className="bg-gradient-to-r from-sky-600 to-indigo-600 text-white px-4 py-2 w-[160px] justify-center items-center mt-4 font-semibold text-[18px]">Submit</button>
           </div>
         </form>
 
         <label
-          className=" hover:underline text-slate-400 hover:text-slate-300 hover:cursor-pointer"
+          className=" hover:underline text-slate-400 text-[14px] hover:text-slate-300 hover:cursor-pointer"
           onClick={() => navigate('/register')}
         > Not a member yet ? subscribe now!</label>
       </div>
