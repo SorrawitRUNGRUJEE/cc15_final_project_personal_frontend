@@ -1,15 +1,15 @@
 import { useStore } from "../../hook/use_Store"
 import { useNavigate } from "react-router-dom"
 export default function StoreSidebarContent(){
-    const {allCategory,setExploreResult,exploreResult,set_explore_display,} = useStore()
+    const {allCategory,setExplore,hdl_explore_content} = useStore()
     const navigate =  useNavigate()
     return(
 
         <>
          <label className=" mb-4">what shall we explore today  ?</label>
         <select className=" mb-4" size={5} onChange={(e)=>{
-            setExploreResult(+e.target.value)
-            set_explore_display(+e.target.value)
+            setExplore(+e.target.value)
+            hdl_explore_content(+e.target.value)
             
         }}>
         {allCategory.map((el,id)=>{
@@ -17,10 +17,7 @@ export default function StoreSidebarContent(){
         })}
         </select>
         <button className=" p-1.5 bg-red-300 rounded-lg" onClick={()=>{
-            if(exploreResult == 0){
-                set_explore_display(1)
-            }
-            navigate(`/explore/${exploreResult}`)
+            navigate(`/explore`)
         
         }}> begin your journey!</button>
 

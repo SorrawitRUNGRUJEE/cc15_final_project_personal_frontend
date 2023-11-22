@@ -11,6 +11,7 @@ const [user,setUser] = useState(null)
 const [loading,setLoading] = useState(true)
 
 useEffect(()=>{
+
     
     const token = getAccessToken()
     if(token){
@@ -32,6 +33,8 @@ useEffect(()=>{
         setLoading(false)
     }
     else setLoading(false)
+
+    axios.get('/store/basket').then(res => console.log(res.data.result))
 },[])
    
     const register = async (data) =>{

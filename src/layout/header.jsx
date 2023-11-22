@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <>
       {!getAccessToken() ? (
-        <div className="flex justify-between items-center px-8 py-2 bg-gray-200">
+        <div className="flex justify-between items-center px-8 py-2 bg-red-300 sticky top-0 z-50 w-full ">
           <div className=" ">default</div>
           <div className="flex gap-4">
             <div
@@ -38,7 +38,7 @@ export default function Header() {
         </div>
        
       ) : user.isAdmin ? (
-        <div className="flex justify-between items-center px-8 py-2 bg-gray-400">
+        <div className="flex justify-between items-center px-8 py-2 bg-red-300 sticky top-0 z-50 w-full">
           <div>admin</div>
           <div className="flex gap-4">
         
@@ -60,11 +60,16 @@ export default function Header() {
           </div>
         </div>
       ) : (
-        <div className="flex justify-between items-center px-8 py-2 bg-gray-400">
+        <div className="flex justify-between items-center px-8 py-2 bg-red-300 sticky top-0 z-50 w-full">
         <div>user</div>
         <div className="flex gap-4">
-          <div>Store</div>
-          <div>explore</div>
+          <div className=" hover:cursor-pointer"
+          onClick={() => navigate("/")}
+          >Store</div>
+          <div
+          className=" hover:cursor-pointer"
+          onClick={() => navigate("/explore")}
+          >explore</div>
           <div>profile</div>
           <div>wishlist</div>
           <div
