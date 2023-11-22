@@ -41,7 +41,6 @@ export default function AdminSidebarSubcontentUpdateCategory() {
             <div key={id} className=" flex flex-col gap-2 ">
               <label>{el.label}</label>
               <Input
-
                 name={el.name}
                 className={"px-4 bg-slate-600 border-none py-2 text-white outline-none"}
                 type={el.type}
