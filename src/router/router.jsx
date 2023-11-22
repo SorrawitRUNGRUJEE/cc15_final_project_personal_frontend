@@ -2,7 +2,7 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "../pages/login";
 import Admin from "../pages/admin";
 import Header from "../layout/header";
-import Footer from "../layout/footer";
+import Footer from "../layout/footer"
 import ProductDetail from "../pages/product_detail";
 import StoreFront from "../pages/store_front";
 import Explore from "../pages/explore";
@@ -20,6 +20,7 @@ import RedirectIfLogin from "../feature/redirect/redirect_if_login";
 import Logout from "../pages/log_out";
 import AdminContextProvider from "../context/admin_context";
 import StoreContextProvider from "../context/storefront_context";
+import ProductCard from "../component/productCard";
 const router = createBrowserRouter([
   {
     path: "/login",
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
       <>
         <RedirectIfLogin>
           <Login />
-          <Footer />
+          
         </RedirectIfLogin>
       </>
     ),
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <RegisterFinal />
-        <Footer />
+        
       </>
     ),
   },
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
       <NotLoginRedirect>
         <Header />
         <Outlet />
-        <Footer />
+        
       </NotLoginRedirect>
     ),
     children: [
@@ -93,7 +94,6 @@ const router = createBrowserRouter([
       <>
         <NotLoginRedirect>
           <Outlet />
-          <Footer />
         </NotLoginRedirect>
       </>
     ),
@@ -112,6 +112,7 @@ const router = createBrowserRouter([
       </RedirectIfLogin>
     ),
   },
+  {path:"/test",element: <ProductCard />}
 ]);
 
 export default function Router() {

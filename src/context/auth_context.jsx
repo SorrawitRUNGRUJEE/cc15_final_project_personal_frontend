@@ -10,7 +10,9 @@ export default function AuthContextProvider({children}){
 const [user,setUser] = useState(null)
 const [loading,setLoading] = useState(true)
 
+
 useEffect(()=>{
+
     
     const token = getAccessToken()
     if(token){
@@ -32,6 +34,7 @@ useEffect(()=>{
         setLoading(false)
     }
     else setLoading(false)
+
 },[])
    
     const register = async (data) =>{

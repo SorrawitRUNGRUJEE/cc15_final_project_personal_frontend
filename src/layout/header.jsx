@@ -7,8 +7,8 @@ export default function Header() {
   return (
     <>
       {!getAccessToken() ? (
-        <div className="flex justify-between items-center px-8 py-4 bg-slate-950">
-          <div className="text-[28px] text-white font-semibold ">STEAM CLONE</div>
+        <div className="flex justify-between items-center px-8 py-4 bg-slate-950 sticky top-0 z-50 w-full">
+          <div className="text-[28px] text-white font-semibold ">{`Vapour`}</div>
           <div className="flex gap-6">
             <div
               className=" p-2  hover:cursor-pointer text-white active:text-slate-300"
@@ -36,12 +36,12 @@ export default function Header() {
             </div>
           </div>
         </div>
-
       ) : user.isAdmin ? (
-        <div className="flex justify-between items-center px-8 py-4 bg-slate-950">
-          <div className="text-[28px] text-white font-semibold ">Welcome Admin!</div>
+        <div className="flex justify-between items-center px-8 py-4 bg-slate-950 sticky top-0 z-50 w-full">
+          <div className="text-[28px] text-white font-semibold ">
+            Welcome Admin!
+          </div>
           <div className="flex gap-4">
-
             <div
               className=" p-2  hover:cursor-pointer text-white active:text-slate-300"
               onClick={() => navigate("/admin")}
@@ -60,15 +60,41 @@ export default function Header() {
           </div>
         </div>
       ) : (
-        <div className="flex justify-between items-center px-8 py-2 bg-gray-400">
-          <div>user</div>
-          <div className="flex gap-4">
-            <div>Store</div>
-            <div>explore</div>
-            <div>profile</div>
-            <div>wishlist</div>
+        <div className="flex justify-between items-center px-8 py-2 bg-slate-950 sticky top-0 z-50 w-full">
+          <div className="text-[28px] text-white font-semibold ">{`${user.username}`}</div>
+          <div className="flex gap-4 items-center">
             <div
-              className=" p-2 bg-gray-300 hover:cursor-pointer"
+              className=" hover:cursor-pointer text-white active:text-slate-300"
+              onClick={() => navigate("/")}
+            >
+              Store
+            </div>
+            <div
+              className=" hover:cursor-pointer text-white active:text-slate-300"
+              onClick={() => navigate("/explore")}
+            >
+              explore
+            </div>
+            <div
+              className=" hover:cursor-pointer text-white active:text-slate-300"
+              onClick={() => navigate("/explore")}
+            >
+              profile
+            </div>
+            <div
+              className=" hover:cursor-pointer text-white active:text-slate-300"
+              onClick={() => navigate("/explore")}
+            >
+              wishlist
+            </div>
+            <div
+              className=" hover:cursor-pointer text-white active:text-slate-300"
+              onClick={() => navigate("/transaction/basket")}
+            >
+              basket
+            </div>
+            <div
+              className=" p-2 bg-gray-300 hover:cursor-pointer  text-white active:text-slate-300 border-2 border-white rounded-2xl"
               onClick={() => {
                 logOut();
                 navigate("/logout");
@@ -78,8 +104,6 @@ export default function Header() {
             </div>
           </div>
         </div>
-
-
       )}
     </>
   );

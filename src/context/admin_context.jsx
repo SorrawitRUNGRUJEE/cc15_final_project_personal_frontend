@@ -452,7 +452,7 @@ export default function AdminContextProvider({ children }) {
         file,
         setFile,
         hdl_product_photo,
-        allPicture
+        
         
       }}
     >
