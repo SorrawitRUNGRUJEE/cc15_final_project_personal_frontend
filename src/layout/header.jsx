@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <>
       {!getAccessToken() ? (
-        <div className="flex justify-between items-center px-8 py-2 bg-slate-950">
+        <div className="flex justify-between items-center px-8 py-4 bg-slate-950">
           <div className="text-[28px] text-white font-semibold ">STEAM CLONE</div>
           <div className="flex gap-6">
             <div
@@ -38,18 +38,18 @@ export default function Header() {
         </div>
 
       ) : user.isAdmin ? (
-        <div className="flex justify-between items-center px-8 py-2 bg-gray-400">
-          <div>admin</div>
+        <div className="flex justify-between items-center px-8 py-4 bg-slate-950">
+          <div className="text-[28px] text-white font-semibold ">Welcome Admin!</div>
           <div className="flex gap-4">
 
             <div
-              className=" p-2  hover:cursor-pointer"
+              className=" p-2  hover:cursor-pointer text-white active:text-slate-300"
               onClick={() => navigate("/admin")}
             >
-              admin
+              Admin
             </div>
             <div
-              className=" p-2  hover:cursor-pointer"
+              className="  p-2  hover:cursor-pointer text-white active:text-slate-300 border-2 border-white rounded-2xl"
               onClick={() => {
                 logOut();
                 navigate("/logout");
