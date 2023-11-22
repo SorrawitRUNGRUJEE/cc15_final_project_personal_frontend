@@ -25,14 +25,14 @@ const validateLogin = (inp) => {
 export default function LoginForm() {
   const navigate = useNavigate()
   const [input, setInput] = useState({
-    username:"",
-    password:""
+    username: "",
+    password: ""
   });
   const [error, setError] = useState({});
   const { login } = useAuth();
 
-  const hdl_change = (e)=>{
-    setInput({...input,[e.target.name]:e.target.value})
+  const hdl_change = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value })
 
   }
   const hdl_submit = async (e) => {
@@ -40,49 +40,50 @@ export default function LoginForm() {
     const result = validateLogin(input);
     if (result) return setError(result);
     setError({})
-     await login(input).then(res =>{
+    await login(input).then(res => {
       navigate('/profile')
-    }).catch(error=>{
+    }).catch(error => {
       setError({})
     })
-  
+
   };
 
   const loginInput = [
-    {id:"1",label:"username",type:"text",placeholder:"enter username",name:"username",onChange:hdl_change,hasError:error.username}, 
-    {id:"2",label:"password",type:"password",placeholder:"enter password",name:"password",onChange:hdl_change,hasError:error.password}];
+    { id: "1", label: "USERNAME", type: "text", placeholder: "Enter username", name: "username", onChange: hdl_change, hasError: error.username },
+    { id: "2", label: "PASSWORD", type: "password", placeholder: "Enter password", name: "password", onChange: hdl_change, hasError: error.password }];
   return (
-   <>
-   <div className=" flex flex-col gap-4">
-
-   <form onSubmit={hdl_submit}>
-        {loginInput.map(el=>{
-          return (<>
-                <div className=" flex flex-col gap-4">
-                  <label >{el.label}</label>
-                  <LoginInput
-                key={el.id}
-                type={el.type}
-                placeholder={el.placeholder}
-                name={el.name}
-                onChange={el.onChange}
-                hasError={el.hasError}
+    <>
+      <div className=" flex flex-col gap-4 h-full w-full justify-center items-center">
+        <form onSubmit={hdl_submit}>
+          {loginInput.map(el => {
+            return (<>
+              <div className=" flex flex-col gap-2">
+                <label className="text-sky-600 text-[20px] font-semibold" >{el.label}</label>
+                <LoginInput
+                  key={el.id}
+                  type={el.type}
+                  placeholder={el.placeholder}
+                  name={el.name}
+                  onChange={el.onChange}
+                  hasError={el.hasError}
                 />
-                </div>
-                <div>
+              </div>
+              <div>
 
                 {el.hasError && <ErrorMessage hasError={el.hasError} />}
-                </div>
-              </>)
-        })}
-        <button>submit</button>      
-    </form>
+              </div>
+            </>)
+          })}
+          <div className=" h-full w-full flex flex-col items-center">
+            <button className="bg-gradient-to-r from-sky-600 to-indigo-600 text-white px-4 py-2 w-[160px] justify-center items-center mt-4 font-semibold text-[18px]">Submit</button>
+          </div>
+        </form>
 
-    <label
-      className=" hover:underline text-gray-600 hover:text-gray-800 hover:cursor-pointer"
-      onClick={()=>navigate('/register')}
-    > not a member yet ? subscribe now!</label>
-        </div>
-                </>
+        <label
+          className=" hover:underline text-slate-400 text-[14px] hover:text-slate-300 hover:cursor-pointer"
+          onClick={() => navigate('/register')}
+        > Not a member yet ? subscribe now!</label>
+      </div>
+    </>
   );
 }

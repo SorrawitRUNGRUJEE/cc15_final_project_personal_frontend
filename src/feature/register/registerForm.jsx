@@ -59,16 +59,16 @@ export default function RegisterForm() {
     e.preventDefault();
     const result = validateRegister(input);
     if (result) return setError(result);
-    const oldInput = {...input}
+    const oldInput = { ...input }
     delete input.confirmEmail;
     await register(input)
       .then((res) => {
         navigate("/login");
       })
       .catch((error) => {
-       
+
         setError({});
-        setInput({...input,...oldInput});
+        setInput({ ...input, ...oldInput });
       });
   };
 
@@ -76,56 +76,56 @@ export default function RegisterForm() {
     {
       id: "1",
       hasError: error.email,
-      label: "email",
+      label: "Email",
       type: "email",
-      placeholder: "enter your email",
+      placeholder: "Enter your email",
       name: "email",
       onChange: hdl_change,
     },
     {
       id: "2",
       hasError: error.confirmEmail,
-      label: "confirm email",
+      label: "Confirm email",
       type: "email",
-      placeholder: "confirm your e-mail",
+      placeholder: "Confirm your e-mail",
       name: "confirmEmail",
       onChange: hdl_change,
     },
     {
       id: "3",
       hasError: error.username,
-      label: "username",
+      label: "Username",
       type: "text",
-      placeholder: " enter your username",
+      placeholder: " Enter your username",
       name: "username",
       onChange: hdl_change,
     },
     {
       id: "4",
       hasError: error.password,
-      label: "password",
+      label: "Password",
       type: "password",
-      placeholder: "enter your password",
+      placeholder: "Enter your password",
       name: "password",
       onChange: hdl_change,
     },
     {
       id: "5",
       hasError: error.confirmPassword,
-      label: "confirm password",
+      label: "Confirm password",
       type: "password",
-      placeholder: "confirm your password",
+      placeholder: "Confirm your password",
       name: "confirmPassword",
       onChange: hdl_change,
     },
   ];
   return (
-    <form className=" flex flex-col gap-4  items-center" onSubmit={hdl_submit}>
+    <form className=" flex flex-col gap-2 items-center" onSubmit={hdl_submit}>
       {registerInput.map((el) => {
         return (
           <>
-            <div className=" flex flex-col gap-2">
-              <label>{el.label}</label>
+            <div className=" flex flex-col g">
+              <label className="text-sky-600 text-[20px] font-semibold">{el.label}</label>
               <RegisterInput
                 key={el.id}
                 type={el.type}
@@ -139,10 +139,10 @@ export default function RegisterForm() {
           </>
         );
       })}
-      <div className=" flex flex-col">
-        <label htmlFor="region">choose your region:</label>
-        <select name="region" id="region" onChange={hdl_change}>
-          <option>Select one</option>
+      <div className=" flex items-center gap-4">
+        <label className="text-sky-600 text-[20px] pb-4 font-semibold" htmlFor="region">Choose your region:</label>
+        <select className="mb-4 px-4 rounded-lg py-2 w-[200px] bg-slate-800 shadow-sm text-white border-none outline-none" name="region" id="region" onChange={hdl_change}>
+          <option className="">Select one</option>
           <option value={"AO"}>Asia-Oceania</option>
           <option value={"EU"}>Europe</option>
           <option value={"AFRICA"}>Africa</option>
@@ -150,7 +150,7 @@ export default function RegisterForm() {
           <option value={"SA"}>South America</option>
         </select>
       </div>
-      <RegisterButton className="">register</RegisterButton>
+      <RegisterButton className="bg-gradient-to-r from-sky-600 to-indigo-600 text-white px-4 py-3 w-[200px] justify-center items-center mt-4 font-semibold text-[18px]">register</RegisterButton>
     </form>
   );
 }

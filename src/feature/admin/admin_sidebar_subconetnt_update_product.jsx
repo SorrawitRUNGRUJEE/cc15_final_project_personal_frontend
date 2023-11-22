@@ -48,8 +48,8 @@ export default function AdminSidebarSubcontentUpdateProduct() {
             <div key={id} className=" flex flex-col gap-2 ">
               <label>{el.label}</label>
               <Input
+                className={"px-4 bg-slate-600 border-none py-2 text-white outline-none"}
                 name={el.name}
-                className={""}
                 type={el.type}
                 placeholder={el.placeholder}
                 onChange={hdl_input}
@@ -59,17 +59,21 @@ export default function AdminSidebarSubcontentUpdateProduct() {
         })}
         <label>Enter the game Full description</label>
         <textarea
+          className={"px-4 bg-slate-600 border-none py-2 text-white outline-none"}
           name="fullDesc"
           placeholder="type here"
           onChange={hdl_input}
           rows={10}
-          className=" border border-black"
+
         >
           hello
         </textarea>
         <div className=" flex gap-2 hover:cursor-pointer hover:underline">
-          <button onClick={() => {}}>submit</button>
           <button
+            className="text-white bg-green-800 px-4 py-1 rounded-md"
+            onClick={() => { }}>submit</button>
+          <button
+            className="text-white bg-red-800 px-4 py-1 rounded-md"
             type="button"
             onClick={() => {
               setIsOpen("");
@@ -84,19 +88,19 @@ export default function AdminSidebarSubcontentUpdateProduct() {
       <div>
         {allProduct.map((el, id) => {
           return (
-            <div key={id} className=" flex gap-2  ">
-              <div className=" mb-2 min-w-[60px]  border-solid-black border flex justify-center items-center">
+            <div key={id} className=" flex gap-2">
+              <div className=" mb-2 min-w-[60px] border-solid-black border flex justify-center items-center text-white">
                 <h1>{el.id}</h1>
               </div>
-              <div className=" mb-2 min-w-[60px]  border-solid-black border flex justify-center items-center">
+              <div className=" mb-2 min-w-[60px] border-solid-black  bg-slate-400 text-black flex justify-center items-center">
                 <h1>{el.title}</h1>
               </div>
-              <div className=" border-2 border-solid-black flex flex-col mb-2 p-0.5 pl-2 ">
-                <h1 className=" text-xs text-left">
+              <div className=" border-2 border-solid-black flex flex-col mb-2 p-0.5 pl-2 max-w-[200px] min-w-[200px] py-2 text-black bg-slate-200 ">
+                <h1 className=" text-xs text-left break-words">
                   full description : {el.fullDesc}
                 </h1>
                 <br></br>
-                <h1 className=" text-xs text-left">
+                <h1 className=" text-xs text-left break-words">
                   brief description : {el.briefDesc}
                 </h1>
                 <br />

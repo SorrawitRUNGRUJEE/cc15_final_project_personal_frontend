@@ -1,7 +1,7 @@
 import Input from "../../component/input"
 import { useAdmin } from "../../hook/use_admin";
-export default function AdminSidebarSubcontentDeleteCategory(){
-    const { hdl_input, input, delete_category, allCategory, setIsOpen, setInput } =
+export default function AdminSidebarSubcontentDeleteCategory() {
+  const { hdl_input, input, delete_category, allCategory, setIsOpen, setInput } =
     useAdmin();
   const inp = [
     {
@@ -35,7 +35,7 @@ export default function AdminSidebarSubcontentDeleteCategory(){
               <label>{el.label}</label>
               <Input
                 name={el.name}
-                className={""}
+                className={"px-4 bg-slate-600 border-none py-2 text-white outline-none"}
                 type={el.type}
                 placeholder={el.placeholder}
                 onChange={hdl_input}
@@ -43,10 +43,13 @@ export default function AdminSidebarSubcontentDeleteCategory(){
             </div>
           );
         })}
-       
+
         <div className=" flex gap-2 hover:cursor-pointer hover:underline">
-          <button onClick={() => {}}>submit</button>
           <button
+            className="text-white bg-green-800 px-4 py-1 rounded-md"
+            onClick={() => { }}>submit</button>
+          <button
+            className="text-white bg-red-800 px-4 py-1 rounded-md"
             type="button"
             onClick={() => {
               setIsOpen("");
@@ -62,13 +65,13 @@ export default function AdminSidebarSubcontentDeleteCategory(){
         {allCategory.map((el, id) => {
           return (
             <div key={id} className=" flex gap-2  ">
-              <div className=" mb-2 min-w-[60px]  border-solid-black border flex justify-center items-center">
+              <div className=" mb-2 min-w-[60px] text-white  border-solid-black border flex justify-center items-center">
                 <h1>{el.id}</h1>
               </div>
-              <div className=" mb-2 min-w-[60px]  border-solid-black border flex justify-center items-center">
+              <div className=" mb-2 min-w-[60px] px-4 bg-slate-300 text-black  border-solid-black border flex justify-center items-center">
                 <h1>{el.name}</h1>
               </div>
-              
+
             </div>
           );
         })}

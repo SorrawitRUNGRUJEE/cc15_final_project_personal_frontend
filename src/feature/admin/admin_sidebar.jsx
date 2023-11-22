@@ -12,79 +12,81 @@ import AdminSidebarSubcontentDeleteProductCategory from "./admin_sidebar_subcone
 import AdminSidebarSubcontentDeleteCategory from "./admin_sidebar_subconetnt_delete_category"
 import AdminSidebarSubcontentUpdateCategory from "./admin_sidebar_subconetnt_update_category"
 import AdminSidebarSubcontentAddCategory from "./admin_sidebar_subconetnt_add_category"
-import {useAuth} from "../../hook/use_auth"
+import { useAuth } from "../../hook/use_auth"
 export default function AdminSidebar() {
-  const {user} = useAuth()
-  
+  const { user } = useAuth()
+
   const [isShow, setIsShow] = useState("")
   const adminContent = [
-    { title: "add admin",
-    modal: <AdminSideBarSubContentAddAdmin />
-   },
+    {
+      title: "add admin",
+      modal: <AdminSideBarSubContentAddAdmin />
+    },
     {
       title: "delete admin",
-      modal:< AdminSidebarSubcontentDeleteAdmin />
+      modal: < AdminSidebarSubcontentDeleteAdmin />
     },
   ]
   const productContent = [
-    { title: "add product",modal: <AdminSidebarSubContentAddProduct /> },
+    { title: "add product", modal: <AdminSidebarSubContentAddProduct /> },
     {
-      title: "update product",modal: < AdminSidebarSubcontentUpdateProduct />
+      title: "update product", modal: < AdminSidebarSubcontentUpdateProduct />
     },
     {
-      title: "delete product",modal: < AdminSidebarSubcontentDeleteProduct />
+      title: "delete product", modal: < AdminSidebarSubcontentDeleteProduct />
     },
     {
-      title: "add product's picture",modal: < AdminSidebarSubcontentAddProductPicture />
+      title: "add product's picture", modal: < AdminSidebarSubcontentAddProductPicture />
     },
     {
-      title: "delete product's picture",modal: < AdminSidebarSubcontentDeleteProductPicture />
+      title: "delete product's picture", modal: < AdminSidebarSubcontentDeleteProductPicture />
     },
     {
-      title: "add product's category",modal: < AdminSidebarSubcontentAddProductCategory />
+      title: "add product's category", modal: < AdminSidebarSubcontentAddProductCategory />
     },
     {
-      title: "delete product's category",modal: < AdminSidebarSubcontentDeleteProductCategory />
+      title: "delete product's category", modal: < AdminSidebarSubcontentDeleteProductCategory />
     }
   ]
   const categoryContent = [
-    { title: "add category",modal: < AdminSidebarSubcontentAddCategory/> },
+    { title: "add category", modal: < AdminSidebarSubcontentAddCategory /> },
     {
-      title: "update category", modal : < AdminSidebarSubcontentUpdateCategory />
+      title: "update category", modal: < AdminSidebarSubcontentUpdateCategory />
     },
     {
       title: "delete category", modal: < AdminSidebarSubcontentDeleteCategory />
     },
   ]
   return (
-    <div className=" flex flex-col gap-4 p-4 bg-slate-400 ">
-     {user.isSuperAdmin && <AdminSidebarContent
-      id={1}
-        title={"admin"}
-        isShow={isShow}
-        content={adminContent}
-        open={()=>setIsShow("admin")}
-        close={()=>setIsShow("")}
-      />}
+    <div className=" flex flex-col gap-4 p-4 bg-slate-950 h-[100vh] min-w-[25vh] ">
+      {user.isSuperAdmin &&
+        <AdminSidebarContent
+          id={1}
+          title={"admin"}
+          isShow={isShow}
+          content={adminContent}
+          open={() => setIsShow("admin")}
+          close={() => setIsShow("")}
+        />}
       <AdminSidebarContent
-      id={2}
+        id={2}
         title={"product"}
         isShow={isShow}
         content={productContent}
-        open={()=>setIsShow("product")}
-        close={()=>setIsShow("")}
+        open={() => setIsShow("product")}
+        close={() => setIsShow("")}
       />
-      <AdminSidebarContent 
-      id={3}
+      <AdminSidebarContent
+        id={3}
         title={"category"}
         isShow={isShow}
         content={categoryContent}
-        open={()=>setIsShow("category")}
-        close={()=>setIsShow("")}
+        open={() => setIsShow("category")}
+        close={() => setIsShow("")}
       />
 
-     
-      
+
+
     </div>
   );
 }
