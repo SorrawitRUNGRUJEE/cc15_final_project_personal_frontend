@@ -2,7 +2,7 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "../pages/login";
 import Admin from "../pages/admin";
 import Header from "../layout/header";
-import Footer from "../layout/footer"
+import Footer from "../layout/footer";
 import ProductDetail from "../pages/product_detail";
 import StoreFront from "../pages/store_front";
 import Explore from "../pages/explore";
@@ -21,6 +21,8 @@ import Logout from "../pages/log_out";
 import AdminContextProvider from "../context/admin_context";
 import StoreContextProvider from "../context/storefront_context";
 import ProductCard from "../component/productCard";
+import TransactionContextProvider from "../context/transaction_context";
+import RedirectIfunpaid from "../feature/redirect/redirect_if_unpaid";
 const router = createBrowserRouter([
   {
     path: "/login",
@@ -28,7 +30,6 @@ const router = createBrowserRouter([
       <>
         <RedirectIfLogin>
           <Login />
-          
         </RedirectIfLogin>
       </>
     ),
@@ -51,7 +52,6 @@ const router = createBrowserRouter([
     element: (
       <>
         <RegisterFinal />
-        
       </>
     ),
   },
@@ -61,7 +61,6 @@ const router = createBrowserRouter([
       <NotLoginRedirect>
         <Header />
         <Outlet />
-        
       </NotLoginRedirect>
     ),
     children: [
@@ -78,7 +77,6 @@ const router = createBrowserRouter([
         <StoreContextProvider>
           <Header />
           <Outlet />
-          <Footer />
         </StoreContextProvider>
       </>
     ),
@@ -93,7 +91,12 @@ const router = createBrowserRouter([
     element: (
       <>
         <NotLoginRedirect>
-          <Outlet />
+          <TransactionContextProvider>
+          
+              <Header />
+              <Outlet />
+          
+          </TransactionContextProvider>
         </NotLoginRedirect>
       </>
     ),
@@ -112,7 +115,7 @@ const router = createBrowserRouter([
       </RedirectIfLogin>
     ),
   },
-  {path:"/test",element: <ProductCard />}
+  { path: "/test", element: <Basket /> },
 ]);
 
 export default function Router() {

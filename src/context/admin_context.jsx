@@ -13,6 +13,8 @@ export default function AdminContextProvider({ children }) {
   const [allCategory, setAllCategory] = useState(null);
   const [file,setFile] = useState([])
   const [allPicture,setAllPicture] =  useState(null)
+  const [unapproveOrder,setUnapproveORder] = useState(null)
+  const [approveOrder,setApproveORder] = useState(null)
   const {setLoading} = useAuth()
 
 
@@ -160,8 +162,22 @@ export default function AdminContextProvider({ children }) {
     axios.get("/admin/product").then((res) => setAllProduct(res.data.result));
     axios.get("/admin/category").then((res) => setAllCategory(res.data.result));
     axios.get('/admin/product/picture').then(res => setAllPicture(res.data.result))
+    axios.get("/admin/payment").then(res=>{
+      setUnapproveORder(prev=>{
+        let newData = res.data.result.filter(el => !el.paymentStatus)
+        return newData
+      })
+      setApproveORder(prev=>{
+        let newData = res.data.result.filter(el => el.paymentStatus)
+        return newData
+      })
+    })
     setInput({})
   }, []);
+
+ 
+
+
 
   const hdl_input = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -192,7 +208,7 @@ export default function AdminContextProvider({ children }) {
     if (!validateMatching(allAdmin, input)) return;
     
           axios
-            .delete(`/admin/${input.id}/${input.username}`)
+            .delete(`/admin/remove/${input.id}/${input.username}`)
             .then((res) => {
               alert(res.data.msg);
               setIsOpen("");
@@ -425,6 +441,38 @@ export default function AdminContextProvider({ children }) {
 
   }
 
+  const hdl_approve_payment = (id) =>{
+    axios.post('/admin/approve',{id}).then(res=> {
+      setUnapproveORder(prev=>{
+        let newData = res.data.result.filter(el => !el.paymentStatus)
+        return newData
+      })
+      setApproveORder(prev=>{
+        let newData = res.data.result.filter(el => el.paymentStatus)
+        return newData
+      })
+
+      
+      
+    })
+    
+  }
+
+  const hdl_reject_payment = (id) =>{
+    axios.delete(`/admin/decline/${id}`).then(res=>{
+      setUnapproveORder(prev=>{
+        let newData = res.data.result.filter(el => !el.paymentStatus)
+        return newData
+      })
+      setApproveORder(prev=>{
+        let newData = res.data.result.filter(el => el.paymentStatus)
+        return newData
+      })
+    })
+  }
+
+
+
   return (
     <AdminContext.Provider
       value={{
@@ -452,7 +500,11 @@ export default function AdminContextProvider({ children }) {
         file,
         setFile,
         hdl_product_photo,
-        
+        approveOrder,
+        unapproveOrder,
+        hdl_approve_payment,
+        hdl_reject_payment,
+
         
       }}
     >

@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import axios from "../config/axios";
 import { useState, useEffect } from "react";
+import {toast} from "react-toastify"
 import { Result } from "postcss";
 export const StoreContext = createContext()
 
@@ -23,6 +24,7 @@ useEffect(()=>{
     axios.get('/store/picture').then(res=> setAllPicture(res.data.result))
     
 },[])
+
 
 const hdl_explore_content = (id) =>{
     let content = []
@@ -61,15 +63,14 @@ const hdl_edit_photo = (id) =>{
 }
 
 const hdl_basket = (id) =>{
-    axios.post(`/store/basket/${id}`).then(console.log)
+    axios.post(`/store/basket/${id}`).then(res=>{
+        alert("product added")
+    }).catch( err =>{
+        alert(err.response.data.msg)
+    }
+        
+    )
 }
-
-
-
-
-
-
-
 
 
     return <StoreContext.Provider value={{

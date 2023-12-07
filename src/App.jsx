@@ -5,7 +5,12 @@ import {ToastContainer} from "react-toastify"
 function App() {
   const {loading} = useAuth()
   if(loading) return <Loading />
-  return<Router/>
+  return(
+  <>
+  <ToastContainer />
+  <Router/>
+  </>
+  )
 }
 
 export default App
