@@ -23,6 +23,7 @@ import StoreContextProvider from "../context/storefront_context";
 import ProductCard from "../component/productCard";
 import TransactionContextProvider from "../context/transaction_context";
 import RedirectIfunpaid from "../feature/redirect/redirect_if_unpaid";
+import RedirectIfPaymentSlipPresent from "../feature/redirect/redirectIfPaymentSlipPresent";
 const router = createBrowserRouter([
   {
     path: "/login",
@@ -92,17 +93,29 @@ const router = createBrowserRouter([
       <>
         <NotLoginRedirect>
           <TransactionContextProvider>
-          
-              <Header />
-              <Outlet />
-          
+            <Header />
+            <Outlet />
           </TransactionContextProvider>
         </NotLoginRedirect>
       </>
     ),
     children: [
-      { path: "/transaction/basket", element: <Basket /> },
-      { path: "/transaction/confirm", element: <ConfirmPayment /> },
+      {
+        path: "/transaction/basket",
+        element: (
+          <RedirectIfunpaid>
+            <Basket />
+          </RedirectIfunpaid>
+        ),
+      },
+      { path: "/transaction/confirm", element: (
+        <RedirectIfPaymentSlipPresent>
+
+          <ConfirmPayment />
+        </RedirectIfPaymentSlipPresent>
+      
+      
+      ) },
       { path: "/transaction/authen", element: <PaymentAuthen /> },
     ],
   },

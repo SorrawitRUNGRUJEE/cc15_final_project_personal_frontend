@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useStore } from "../../hook/use_Store";
 import axios from "axios";
-import { all } from "axios";
+
 
 export default function ExploreChangeSecondPicture({ close,productId }) {
   const [newPicture, setNewPicture] = useState({});
@@ -26,9 +26,6 @@ export default function ExploreChangeSecondPicture({ close,productId }) {
                 }
             }
             return newObj
-            
-            
-            
         })
     }
     setAllProduct(prev=>{

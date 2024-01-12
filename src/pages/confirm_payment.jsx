@@ -3,7 +3,9 @@ import { useTransaction } from "../hook/use_transaction";
 export default function ConfirmPayment() {
   const { order,paymentSlip,setPaymentSlip,hdl_submit_payment} = useTransaction();
   
+  if(!order.order && !order.product) return <h1>it's looking empty here...</h1>
   return (
+    
     <>
     {order.order && order.product &&
     <section className=" max-w-1024 mx-auto " >

@@ -83,7 +83,7 @@ export default function Header() {
             </div>
             <div
               className=" hover:cursor-pointer text-white active:text-slate-300"
-              onClick={() => navigate("/explore")}
+              onClick={() => navigate("/")}
             >
               wishlist
             </div>
@@ -92,6 +92,12 @@ export default function Header() {
               onClick={() => navigate("/transaction/basket")}
             >
               basket
+            </div>
+            <div
+              className=" hover:cursor-pointer text-white active:text-slate-300"
+              onClick={() => navigate("/transaction/confirm")}
+            >
+              payment
             </div>
             <div
               className=" p-2 bg-gray-300 hover:cursor-pointer  text-white active:text-slate-300 border-2 border-white rounded-2xl"

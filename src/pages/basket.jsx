@@ -6,6 +6,10 @@ export default function Basket() {
     const navigate = useNavigate()
   const { basketContent, hdl_multiplier,totalPrice,hdl_single_basket_delete,hdl_all_basket_delete,hdl_order } = useTransaction();
   const {user}= useAuth()
+  const hdl_order_submit =  async (e) =>{
+    e.preventDefault()
+    await hdl_order().then(res=> navigate("/transaction/confirm")).catch(err=> alert(err.response.data.msg))
+  }
     if(basketContent){
         if(basketContent.length == 0){
          return (<div className="bg-gradient-to-r from-sky-800 to-indigo-950 w-full h-screen py-4 text-white">
@@ -59,7 +63,7 @@ export default function Basket() {
         </div>
 
           <div className="flex gap-11 absolute bottom-3 right-12">
-          <button className=" py-1 px-2 bg-slate-300 rounded-xl" onClick={()=>hdl_order().then( navigate("/transaction/confirm"))}>proceed to payment</button>
+          <button className=" py-1 px-2 bg-slate-300 rounded-xl" onClick={hdl_order_submit}>proceed to payment</button>
           <button className=" py-1 px-2 bg-slate-300 rounded-xl" onClick={()=>hdl_all_basket_delete()}>clear basket</button>
           </div>
 

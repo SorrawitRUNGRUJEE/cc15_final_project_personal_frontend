@@ -94,7 +94,7 @@ export default function TransactionContextProvider({ children }) {
   };
 
   const hdl_all_basket_delete =   (id) => {
-    if (confirm("Do you want toremove all product ?") == true) {
+    if (confirm("Do you want to remove all product ?") == true) {
       axios.delete("/store/basket").then((then) => {
         setBasketContent([]);
       });
@@ -113,18 +113,16 @@ export default function TransactionContextProvider({ children }) {
         setOrder( prev=>{
             const order = res.data.order
             const order_item = res.data.order_item
-    
             let newData = {...prev}
             newData.order = order
             newData.product = order_item
             return newData
             
-            
         })
-
-
         axios.delete("/store/basket");
-      }).catch(err=> {throw(err)});
+      }).catch(err=>{
+        throw err
+      });
     }
   };
 
